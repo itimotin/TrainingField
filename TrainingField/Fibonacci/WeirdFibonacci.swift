@@ -64,7 +64,7 @@ struct WeirdFibonacci {
         let zeroLinkedList = LinkedList<Int8>()
         zeroLinkedList.append(value: 0)
         var array : [LinkedList<Int8>] = [zeroLinkedList]
-        print("\(array[0].count) digits at index \(countIndex)")
+//        print("\(array[0].count) digits at index \(countIndex)")
         while array[i-1].count < 1000 {
             if i == 1 {
                 let oneLinkedList = LinkedList<Int8>()
@@ -76,7 +76,7 @@ struct WeirdFibonacci {
             }
             
             countIndex += 1
-            print("\(array[i].count) digits at index \(countIndex)")
+//            print("\(array[i].count) digits at index \(countIndex)")
             i += 1
         }
         array.last?.printListAsString()
@@ -91,7 +91,13 @@ struct WeirdFibonacci {
 //        print(calculateFibIterationMethodVerbose(forIndex: index))
          let indexWith1000Digits = calculateFibIterationMethodVerbose()
         print("fibonacci with 1000 Digits are at index \(indexWith1000Digits)")
-        
+        let linkedList = LinkedList<Int8>()
+        linkedList.append(value: 8)
+        let node = LinkedNode.init(value: 10 as Int8)
+        linkedList.insert(node, atIndex: 0)
+        print(linkedList.description)
+        linkedList.reversed()
+        print(linkedList.description)
 //        var timeStart = CFAbsoluteTimeGetCurrent()
         
 //        print("Recusion method")

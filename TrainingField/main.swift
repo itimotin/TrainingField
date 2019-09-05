@@ -23,5 +23,5 @@ if var fib = fib as? WeirdFibonacci {
 
 //_ = LinkedList<Int>().run()
 
-_ = Palindrome().run()
+//_ = Palindrome().run()
 //_ = CoolString().run()

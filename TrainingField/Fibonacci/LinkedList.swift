@@ -11,6 +11,7 @@ import Foundation
 class LinkedList<T> {
     public typealias Node = LinkedNode<T>
     private var head: Node?
+    private var tail: Node?
     
     var isEmpty: Bool {
         return head == nil
@@ -37,6 +38,7 @@ class LinkedList<T> {
         if let lastNode = last {
             newNode.previous = lastNode
             lastNode.next = newNode
+            tail = newNode
         } else {
             head = newNode
         }
@@ -52,6 +54,34 @@ class LinkedList<T> {
             head = newNode
         }
     }
+    
+    public func insert(_ node: Node, atIndex index: Int) {
+        let newNode = node
+        if index == 0 {
+            newNode.next = head
+            head?.previous = newNode
+            head = newNode
+        } else {
+            let prev = self.node(atIndex: index-1)
+            let next = prev.next
+            
+            newNode.previous = prev
+            newNode.next = prev.next
+            prev.next = newNode
+            next?.previous = newNode
+        }
+    }
+    
+    public func reversed() {
+        var node = head
+        tail = node // If you had a tail pointer
+        while let currentNode = node {
+            node = currentNode.next
+            swap(&currentNode.next, &currentNode.previous)
+            head = currentNode
+        }
+    }
+
     
     public var count: Int {
         guard var node = head else {
@@ -198,6 +228,8 @@ class LinkedList<T> {
         list.insertFirst(value: 9)
         print("Output need to be like 9 -> 1 -> 2 -> 3")
         printList(list: list)
+//        let listReversed = reverse()
+//        printList(list: listReversed)
         let list2 = LinkedList<Int8>()
         list2.append(value: 9)
         list2.append(value: 9)
@@ -208,3 +240,15 @@ class LinkedList<T> {
     }
 }
 
+extension LinkedList: CustomStringConvertible {
+    public var description: String{
+        var s = "["
+        var node = head
+        while node != nil {
+            s += "\(node!.value!)"
+            node = node!.next
+            if node != nil {s += ", "}
+        }
+        return s + "]"
+    }
+}
